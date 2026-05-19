@@ -60,23 +60,23 @@ INSERT INTO Departamento (nombre_departamento, localizacion_id) VALUES ('Atenci�
 INSERT INTO Departamento (nombre_departamento, localizacion_id) VALUES ('I+D', 5);
 INSERT INTO Departamento (nombre_departamento, localizacion_id) VALUES ('Legal', 9);
 
-// Agregando los proyectos de la empresa
 
-INSERT INTO Proyecto (nombre_proyecto, presupuesto, fecha_inicio, fecha_fin) VALUES ('Rediseño Web Corporativo', 12500, TO_DATE('2023-01-10','YYYY-MM-DD'), TO_DATE('2023-04-15','YYYY-MM-DD'));
-INSERT INTO Proyecto (nombre_proyecto, presupuesto, fecha_inicio, fecha_fin) VALUES ('Implementación ERP SAP', 85000, TO_DATE('2022-06-01','YYYY-MM-DD'), TO_DATE('2023-12-31','YYYY-MM-DD'));
-INSERT INTO Proyecto (nombre_proyecto, presupuesto, fecha_inicio, fecha_fin) VALUES ('Taller Ciberseguridad 2024', 4500, TO_DATE('2024-02-01','YYYY-MM-DD'), TO_DATE('2024-02-28','YYYY-MM-DD'));
-INSERT INTO Proyecto (nombre_proyecto, presupuesto, fecha_inicio, fecha_fin) VALUES ('Expansión Sucursal Norte', 150000, TO_DATE('2023-03-15','YYYY-MM-DD'), TO_DATE('2024-03-15','YYYY-MM-DD'));
-INSERT INTO Proyecto (nombre_proyecto, presupuesto, fecha_inicio, fecha_fin) VALUES ('Auditoría Calidad ISO9001', 9800, TO_DATE('2024-05-10','YYYY-MM-DD'), TO_DATE('2024-06-10','YYYY-MM-DD'));
-INSERT INTO Proyecto (nombre_proyecto, presupuesto, fecha_inicio, fecha_fin) VALUES ('Migración Microservicios', 45000, TO_DATE('2023-08-20','YYYY-MM-DD'), TO_DATE('2024-08-20','YYYY-MM-DD'));
-INSERT INTO Proyecto (nombre_proyecto, presupuesto, fecha_inicio, fecha_fin) VALUES ('Desarrollo App Móvil iOS', 32000, TO_DATE('2023-11-01','YYYY-MM-DD'), TO_DATE('2024-05-30','YYYY-MM-DD'));
-INSERT INTO Proyecto (nombre_proyecto, presupuesto, fecha_inicio, fecha_fin) VALUES ('Optimización DB Oracle', 15000, TO_DATE('2024-01-15','YYYY-MM-DD'), TO_DATE('2024-03-15','YYYY-MM-DD'));
-INSERT INTO Proyecto (nombre_proyecto, presupuesto, fecha_inicio, fecha_fin) VALUES ('Renovación Hardware DataCenter', 60000, TO_DATE('2023-02-01','YYYY-MM-DD'), TO_DATE('2023-05-01','YYYY-MM-DD'));
-INSERT INTO Proyecto (nombre_proyecto, presupuesto, fecha_inicio, fecha_fin) VALUES ('Portal Empleado v2', 25000, TO_DATE('2022-09-10','YYYY-MM-DD'), TO_DATE('2023-03-10','YYYY-MM-DD'));
-INSERT INTO Proyecto (nombre_proyecto, presupuesto, fecha_inicio, fecha_fin) VALUES ('Integración API Pagos', 18500, TO_DATE('2024-04-01','YYYY-MM-DD'), TO_DATE('2024-07-01','YYYY-MM-DD'));
-INSERT INTO Proyecto (nombre_proyecto, presupuesto, fecha_inicio, fecha_fin) VALUES ('Migración Windows 11', 12000, TO_DATE('2023-10-15','YYYY-MM-DD'), TO_DATE('2023-11-30','YYYY-MM-DD'));
-INSERT INTO Proyecto (nombre_proyecto, presupuesto, fecha_inicio, fecha_fin) VALUES ('Proyecto Data Analytics', 55000, TO_DATE('2024-03-01','YYYY-MM-DD'), TO_DATE('2025-03-01','YYYY-MM-DD'));
-INSERT INTO Proyecto (nombre_proyecto, presupuesto, fecha_inicio, fecha_fin) VALUES ('Campaña Marketing Q4', 20000, TO_DATE('2023-05-20','YYYY-MM-DD'), TO_DATE('2023-12-20','YYYY-MM-DD'));
-INSERT INTO Proyecto (nombre_proyecto, presupuesto, fecha_inicio, fecha_fin) VALUES ('Plan Recuperación Desastres', 35000, TO_DATE('2024-06-01','YYYY-MM-DD'), TO_DATE('2024-12-01','YYYY-MM-DD'));
+// Agregando los proyectos de la empresa
+INSERT INTO Proyecto (nombre_proyecto, presupuesto, fecha_inicio, fecha_fin, estado) VALUES ('Rediseño Web Corporativo', 12500, TO_DATE('2023-01-10','YYYY-MM-DD'), TO_DATE('2023-04-15','YYYY-MM-DD'), 'Inactivo');
+INSERT INTO Proyecto (nombre_proyecto, presupuesto, fecha_inicio, fecha_fin, estado) VALUES ('Implementación ERP SAP', 85000, TO_DATE('2022-06-01','YYYY-MM-DD'), TO_DATE('2023-12-31','YYYY-MM-DD'), 'Inactivo');
+INSERT INTO Proyecto (nombre_proyecto, presupuesto, fecha_inicio, fecha_fin, estado) VALUES ('Taller Ciberseguridad 2024', 4500, TO_DATE('2024-02-01','YYYY-MM-DD'), TO_DATE('2024-02-28','YYYY-MM-DD'), 'Activo');
+INSERT INTO Proyecto (nombre_proyecto, presupuesto, fecha_inicio, fecha_fin, estado) VALUES ('Expansión Sucursal Norte', 150000, TO_DATE('2023-03-15','YYYY-MM-DD'), TO_DATE('2024-03-15','YYYY-MM-DD'), 'Activo');
+INSERT INTO Proyecto (nombre_proyecto, presupuesto, fecha_inicio, fecha_fin, estado) VALUES ('Auditoría Calidad ISO9001', 9800, TO_DATE('2024-05-10','YYYY-MM-DD'), TO_DATE('2024-06-10','YYYY-MM-DD'), 'Activo');
+INSERT INTO Proyecto (nombre_proyecto, presupuesto, fecha_inicio, fecha_fin, estado) VALUES ('Migración Microservicios', 45000, TO_DATE('2023-08-20','YYYY-MM-DD'), TO_DATE('2024-08-20','YYYY-MM-DD'), 'Activo');
+INSERT INTO Proyecto (nombre_proyecto, presupuesto, fecha_inicio, fecha_fin, estado) VALUES ('Desarrollo App Móvil iOS', 32000, TO_DATE('2023-11-01','YYYY-MM-DD'), TO_DATE('2024-05-30','YYYY-MM-DD'), 'Activo');
+INSERT INTO Proyecto (nombre_proyecto, presupuesto, fecha_inicio, fecha_fin, estado) VALUES ('Optimización DB Oracle', 15000, TO_DATE('2024-01-15','YYYY-MM-DD'), TO_DATE('2024-03-15','YYYY-MM-DD'), 'Inactivo');
+INSERT INTO Proyecto (nombre_proyecto, presupuesto, fecha_inicio, fecha_fin, estado) VALUES ('Renovación Hardware DataCenter', 60000, TO_DATE('2023-02-01','YYYY-MM-DD'), TO_DATE('2023-05-01','YYYY-MM-DD'), 'Inactivo');
+INSERT INTO Proyecto (nombre_proyecto, presupuesto, fecha_inicio, fecha_fin, estado) VALUES ('Portal Empleado v2', 25000, TO_DATE('2022-09-10','YYYY-MM-DD'), TO_DATE('2023-03-10','YYYY-MM-DD'), 'Inactivo');
+INSERT INTO Proyecto (nombre_proyecto, presupuesto, fecha_inicio, fecha_fin, estado) VALUES ('Integración API Pagos', 18500, TO_DATE('2024-04-01','YYYY-MM-DD'), TO_DATE('2024-07-01','YYYY-MM-DD'), 'Activo');
+INSERT INTO Proyecto (nombre_proyecto, presupuesto, fecha_inicio, fecha_fin, estado) VALUES ('Migración Windows 11', 12000, TO_DATE('2023-10-15','YYYY-MM-DD'), TO_DATE('2023-11-30','YYYY-MM-DD'), 'Inactivo');
+INSERT INTO Proyecto (nombre_proyecto, presupuesto, fecha_inicio, fecha_fin, estado) VALUES ('Proyecto Data Analytics', 55000, TO_DATE('2024-03-01','YYYY-MM-DD'), TO_DATE('2025-03-01','YYYY-MM-DD'), 'Activo');
+INSERT INTO Proyecto (nombre_proyecto, presupuesto, fecha_inicio, fecha_fin, estado) VALUES ('Campaña Marketing Q4', 20000, TO_DATE('2023-05-20','YYYY-MM-DD'), TO_DATE('2023-12-20','YYYY-MM-DD'), 'Inactivo');
+INSERT INTO Proyecto (nombre_proyecto, presupuesto, fecha_inicio, fecha_fin, estado) VALUES ('Plan Recuperación Desastres', 35000, TO_DATE('2024-06-01','YYYY-MM-DD'), TO_DATE('2024-12-01','YYYY-MM-DD'), 'Activo');
 
 
 
@@ -141,12 +141,26 @@ INSERT INTO Historial_Puesto VALUES (10, TO_DATE('2018-11-01','YYYY-MM-DD'), TO_
 INSERT INTO Historial_Puesto VALUES (2, TO_DATE('2016-01-01','YYYY-MM-DD'), TO_DATE('2019-05-19','YYYY-MM-DD'), 'IT_PROG', 1);
 INSERT INTO Historial_Puesto VALUES (7, TO_DATE('2017-08-15','YYYY-MM-DD'), TO_DATE('2021-08-19','YYYY-MM-DD'), 'SA_REP', 2);
 INSERT INTO Historial_Puesto VALUES (5, TO_DATE('2012-01-01','YYYY-MM-DD'), TO_DATE('2021-12-31','YYYY-MM-DD'), 'MK_MAN', 5);
-INSERT INTO Historial_Puesto VALUES (1, TO_DATE('2018-01-01','YYYY-MM-DD'), TO_DATE('2019-12-31','YYYY-MM-DD'), 'AD_ASST', 1);
 INSERT INTO Historial_Puesto VALUES (9, TO_DATE('2017-04-01','YYYY-MM-DD'), TO_DATE('2019-11-30','YYYY-MM-DD'), 'AD_ASST', 3);
 INSERT INTO Historial_Puesto VALUES (3, TO_DATE('2016-10-01','YYYY-MM-DD'), TO_DATE('2019-02-14','YYYY-MM-DD'), 'ST_CLRK', 7);
 INSERT INTO Historial_Puesto VALUES (4, TO_DATE('2005-01-01','YYYY-MM-DD'), TO_DATE('2010-04-30','YYYY-MM-DD'), 'IT_PROG', 1);
 INSERT INTO Historial_Puesto VALUES (6, TO_DATE('2015-06-01','YYYY-MM-DD'), TO_DATE('2018-03-19','YYYY-MM-DD'), 'ST_CLRK', 7);
 INSERT INTO Historial_Puesto VALUES (8, TO_DATE('2017-01-01','YYYY-MM-DD'), TO_DATE('2020-01-09','YYYY-MM-DD'), 'AD_ASST', 8);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

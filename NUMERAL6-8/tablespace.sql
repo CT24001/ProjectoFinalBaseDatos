@@ -1,0 +1,10 @@
+--crear el tablespace
+CREATE TABLESPACE USERS 
+DATAFILE 'users_proyecto.dbf' 
+SIZE 50M 
+AUTOEXTEND ON;
+
+ALTER USER usr_lectura QUOTA UNLIMITED ON USERS;
+ALTER USER usr_admin QUOTA UNLIMITED ON USERS;
+
+

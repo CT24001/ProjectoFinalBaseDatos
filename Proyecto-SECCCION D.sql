@@ -29,12 +29,12 @@ PROMPT =========================================================================
 SELECT e.nombre || ' ' || e.apellido AS empleado,   -- Concatenamos nombre completo
        p.nombre_proyecto,                            -- Nombre del proyecto
        p.presupuesto                                 -- Presupuesto para ordenamiento
-FROM empleado e
-INNER JOIN asignacion a ON e.empleado_id = a.empleado_id      -- Unión por asignación
-INNER JOIN proyecto p ON a.proyecto_id = p.proyecto_id        -- Unión por proyecto
+FROM adminproyecto.empleado e
+INNER JOIN adminproyecto.asignacion a ON e.empleado_id = a.empleado_id      -- Unión por asignación
+INNER JOIN adminproyecto.proyecto p ON a.proyecto_id = p.proyecto_id        -- Unión por proyecto
 WHERE p.proyecto_id IN (                                     -- FILTRO PRINCIPAL CON IN
     SELECT proyecto_id                                        -- Subconsulta: lista de IDs
-    FROM proyecto
+    FROM adminproyecto.proyecto
     WHERE presupuesto > 40000                                 -- Condición del presupuesto alto
 )
 ORDER BY p.presupuesto DESC;                                  -- Ordenamos de mayor a menor presupuesto
@@ -59,10 +59,10 @@ PROMPT =========================================================================
 
 SELECT proyecto_id,                                        -- Identificador del proyecto
        nombre_proyecto                                     -- Nombre para identificar fácilmente
-FROM proyecto
+FROM adminproyecto.proyecto
 WHERE proyecto_id NOT IN (                                 -- EXCLUIMOS los proyectos que...
     SELECT DISTINCT proyecto_id                            -- ...aparecen en asignaciones
-    FROM asignacion
+    FROM adminproyecto.asignacion
     WHERE proyecto_id IS NOT NULL                          -- Importante: evitar NULLs en NOT IN
 )
 ORDER BY proyecto_id;                                      -- Ordenamos por ID para mejor lectura
@@ -89,11 +89,11 @@ PROMPT =========================================================================
 SELECT e.nombre || ' ' || e.apellido AS empleado,        -- Empleado con salario alto
        e.salario,                                         -- Su salario actual
        d.nombre_departamento                              -- Departamento al que pertenece
-FROM empleado e
-INNER JOIN departamento d ON e.departamento_id = d.departamento_id   -- Traemos nombre del depto
+FROM adminproyecto.empleado e
+INNER JOIN adminproyecto.departamento d ON e.departamento_id = d.departamento_id   -- Traemos nombre del depto
 WHERE e.salario > (                                       -- Comparación con promedio del depto
     SELECT AVG(salario)                                   -- Calculamos promedio
-    FROM empleado e2                                      -- Alias diferente para evitar ambigüedad
+    FROM adminproyecto.empleado e2                                      -- Alias diferente para evitar ambigüedad
     WHERE e2.departamento_id = e.departamento_id          -- CORRELACIÓN: mismo departamento
 )
 ORDER BY d.nombre_departamento, e.salario DESC;           -- Orden: por depto y salario descendente
@@ -122,10 +122,10 @@ SELECT p.nombre_proyecto,                                 -- Nombre del proyecto
        p.estado,                                          -- Estado actual (Activo/Inactivo)
        (
            SELECT COUNT(*)                                -- Subconsulta escalar: cuenta registros
-           FROM asignacion a
+           FROM adminproyecto.asignacion a
            WHERE a.proyecto_id = p.proyecto_id            -- CORRELACIÓN: misma proyecto_id
        ) AS total_empleados_asignados                     -- Alias para la columna calculada
-FROM proyecto p
+FROM adminproyecto.proyecto p
 ORDER BY total_empleados_asignados DESC;                  -- Ordenamos por cantidad de empleados
 
 
@@ -153,8 +153,8 @@ FROM (
     -- SUBCONSULTA: Tabla derivada que agrupa y calcula promedios por departamento
     SELECT d.nombre_departamento AS departamento,        -- Alias para la columna
            AVG(e.salario) AS salario_promedio            -- Promedio de salarios del depto
-    FROM empleado e
-    INNER JOIN departamento d ON e.departamento_id = d.departamento_id
+    FROM adminproyecto.empleado e
+    INNER JOIN adminproyecto.departamento d ON e.departamento_id = d.departamento_id
     GROUP BY d.nombre_departamento                       -- Agrupamos por departamento
 ) depto_promedio                                          -- Alias de la tabla derivada (obligatorio)
 WHERE depto_promedio.salario_promedio > 2000              -- Filtro sobre columna calculada
@@ -184,11 +184,11 @@ PROMPT =========================================================================
 
 SELECT e.nombre || ' ' || e.apellido AS empleado,        -- Nombre completo del empleado
        e.email                                            -- Email para contacto
-FROM empleado e
+FROM adminproyecto.empleado e
 WHERE EXISTS (                                           -- Condición de existencia
     SELECT 1                                             -- SELECT 1 es eficiente: solo verifica existencia
-    FROM asignacion a
-    INNER JOIN proyecto p ON a.proyecto_id = p.proyecto_id   -- Unimos con proyectos
+    FROM adminproyecto.asignacion a
+    INNER JOIN adminproyecto.proyecto p ON a.proyecto_id = p.proyecto_id   -- Unimos con proyectos
     WHERE a.empleado_id = e.empleado_id                  -- CORRELACIÓN: mismo empleado
       AND p.estado = 'Activo'                            -- Filtro: proyecto activo
 )

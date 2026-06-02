@@ -22,18 +22,19 @@ SELECT
     pa.nombre_pais,
     r.nombre_region,
     ROUND((SYSDATE - e.fecha_contratacion) / 365, 1) AS anios_antiguedad  -- Años trabajados
-FROM empleado e
-INNER JOIN puesto p ON e.puesto_id = p.puesto_id
-INNER JOIN departamento d ON e.departamento_id = d.departamento_id
-LEFT JOIN empleado jefe ON e.manager_id = jefe.empleado_id    -- LEFT JOIN porque CEO no tiene jefe
-LEFT JOIN localizacion l ON d.localizacion_id = l.localizacion_id
-LEFT JOIN pais pa ON l.pais_id = pa.pais_id
-LEFT JOIN region r ON pa.region_id = r.region_id;
+FROM adminproyecto.empleado e
+INNER JOIN adminproyecto.puesto p ON e.puesto_id = p.puesto_id
+INNER JOIN adminproyecto.departamento d ON e.departamento_id = d.departamento_id
+LEFT JOIN adminproyecto.empleado jefe ON e.manager_id = jefe.empleado_id    -- LEFT JOIN porque CEO no tiene jefe
+LEFT JOIN adminproyecto.localizacion l ON d.localizacion_id = l.localizacion_id
+LEFT JOIN adminproyecto.pais pa ON l.pais_id = pa.pais_id
+LEFT JOIN adminproyecto.region r ON pa.region_id = r.region_id;
 
 -- --------------------------------------------------------------------------------
 -- Consulta de prueba: Visualizar primeros 10 registros de la vista
 -- --------------------------------------------------------------------------------
-SELECT * FROM vista_empleados_operativa WHERE ROWNUM <= 10;
+
+SELECT * FROM adminproyecto.vista_empleados_operativa WHERE ROWNUM <= 10;
 
 -- --------------------------------------------------------------------------------
 -- E2 - Vista de reporting para análisis gerencial por departamento
@@ -49,15 +50,15 @@ SELECT
     TO_CHAR(MAX(e.fecha_contratacion), 'DD/MM/YYYY') AS ultima_contratacion,  -- Empleado más nuevo
     TO_CHAR(MIN(e.fecha_contratacion), 'DD/MM/YYYY') AS primera_contratacion,  -- Empleado más antiguo
     ROUND((SYSDATE - MIN(e.fecha_contratacion)) / 365, 1) AS anios_desde_primer_empleado  -- Madurez del equipo
-FROM departamento d
-LEFT JOIN empleado e ON d.departamento_id = e.departamento_id    -- LEFT JOIN muestra departamentos sin empleados
+FROM adminproyecto.departamento d
+LEFT JOIN adminproyecto.empleado e ON d.departamento_id = e.departamento_id    -- LEFT JOIN muestra departamentos sin empleados
 GROUP BY d.nombre_departamento;
 
 -- --------------------------------------------------------------------------------
 -- Consulta de prueba: Departamentos ordenados por salario promedio descendente
 -- --------------------------------------------------------------------------------
 SELECT * 
-FROM vista_reporting_departamentos
+FROM adminproyecto.vista_reporting_departamentos
 ORDER BY salario_promedio DESC;
 
 -- ================================================================================

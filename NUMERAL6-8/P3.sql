@@ -3,8 +3,8 @@ CREATE OR REPLACE PROCEDURE sp_indicadores_categoria AS
     v_monto_activos NUMBER(12,2) := 0; v_monto_inactivos NUMBER(12,2) := 0;
     v_variacion_pct NUMBER(5,2) := 0;
 BEGIN
-    SELECT COUNT(*), NVL(SUM(presupuesto), 0) INTO v_activos, v_monto_activos FROM Proyecto WHERE estado = 'Activo';
-    SELECT COUNT(*), NVL(SUM(presupuesto), 0) INTO v_inactivos, v_monto_inactivos FROM Proyecto WHERE estado = 'Inactivo';
+    SELECT COUNT(*), NVL(SUM(presupuesto), 0) INTO v_activos, v_monto_activos FROM adminProyecto.Proyecto WHERE estado = 'Activo';
+    SELECT COUNT(*), NVL(SUM(presupuesto), 0) INTO v_inactivos, v_monto_inactivos FROM adminProyecto.Proyecto WHERE estado = 'Inactivo';
 
     IF v_monto_inactivos > 0 THEN
         v_variacion_pct := ((v_monto_activos - v_monto_inactivos) / v_monto_inactivos) * 100;

@@ -4,8 +4,8 @@ CREATE OR REPLACE PROCEDURE sp_top_elementos (
     -- REQUISITO: Cursor explícito para procesar fila por fila
     CURSOR c_top_empleados IS
         SELECT e.empleado_id, e.nombre || ' ' || e.apellido AS nombre_completo, SUM(a.horas_asignadas) AS total_horas
-        FROM Empleado e
-        JOIN Asignacion a ON e.empleado_id = a.empleado_id
+        FROM adminproyecto.Empleado e
+        JOIN adminproyecto.Asignacion a ON e.empleado_id = a.empleado_id
         GROUP BY e.empleado_id, e.nombre, e.apellido
         ORDER BY total_horas DESC;
 

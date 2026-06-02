@@ -13,7 +13,7 @@ BEGIN
 
     SELECT COUNT(*), NVL(SUM(presupuesto), 0), NVL(AVG(presupuesto), 0)
     INTO v_volumen, v_monto_total, v_promedio
-    FROM Proyecto
+    FROM adminproyecto.Proyecto
     WHERE fecha_inicio BETWEEN p_fecha_inicio AND p_fecha_fin;
 
     -- Forzar excepción predefinida si no hay registros

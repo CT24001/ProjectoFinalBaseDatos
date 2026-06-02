@@ -6,7 +6,7 @@ BEGIN
     -- Alerta 1: Desajustes de umbrales salariales
     FOR r_emp IN (
         SELECT e.nombre || ' ' || e.apellido AS emp, e.salario, p.titulo_puesto, p.salario_max
-        FROM Empleado e JOIN Puesto p ON e.puesto_id = p.puesto_id
+        FROM adminProyecto.Empleado e JOIN adminProyecto.Puesto p ON e.puesto_id = p.puesto_id
         WHERE e.salario > p.salario_max
     ) LOOP
         DBMS_OUTPUT.PUT_LINE('[CRÍTICO - SALARIO] ' || r_emp.emp || ' gana $' || r_emp.salario || ' superando el máximo de ' || r_emp.titulo_puesto || ' ($' || r_emp.salario_max || ')');

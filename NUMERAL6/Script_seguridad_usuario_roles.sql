@@ -5,7 +5,7 @@ ALTER SESSION SET CONTAINER = FREEPDB1;
 DROP USER usr_lectura CASCADE;
 DROP USER usr_admin CASCADE;
 
--- 2. TUS LÍNEAS ORIGINALES DE CREACIÓN Y CONEXIÓN
+--LÍNEAS ORIGINALES DE CREACIÓN Y CONEXIÓN
 CREATE USER usr_lectura IDENTIFIED BY "UesLectura2026";
 CREATE USER usr_admin IDENTIFIED BY "UesAdmin2026";
 
@@ -17,7 +17,7 @@ ALTER USER usr_admin QUOTA UNLIMITED ON USERS;
 GRANT CREATE SESSION TO usr_lectura;
 GRANT CREATE SESSION TO usr_admin;
 
--- usr_lectura: Solo SELECT de negocio (CON EL PREFIJO CORRECTO)
+--usr_lectura: Solo SELECT de negocio (CON EL PREFIJO CORRECTO)
 
 GRANT SELECT ON ADMINPROYECTO.Region TO usr_lectura;
 GRANT SELECT ON ADMINPROYECTO.Pais TO usr_lectura;
@@ -33,7 +33,7 @@ GRANT SELECT ON ADMINPROYECTO.Asignacion TO usr_lectura;
 GRANT SELECT ON ADMINPROYECTO.vw_resumen_proyectos TO usr_lectura;
 GRANT SELECT ON ADMINPROYECTO.vw_detalle_empleados TO usr_lectura;
 
--- usr_admin: EXECUTE de lógica y DML sobre auditoría/logs (CON PREFIJO)
+--usr_admin: EXECUTE de lógica y DML sobre auditoría/logs (CON PREFIJO)
 
 GRANT EXECUTE ON ADMINPROYECTO.sp_resumen_periodo TO usr_admin;
 GRANT EXECUTE ON ADMINPROYECTO.sp_top_elementos TO usr_admin;

@@ -20,9 +20,9 @@ ALTER USER usr_admin QUOTA UNLIMITED ON USERS;
 GRANT CREATE SESSION TO usr_lectura;
 GRANT CREATE SESSION TO usr_admin;
 
+-- ASIGNACIÓN DE PRIVILEGIOS A: usr_lectura
 
--- usr_lectura: Solo SELECT de negocio (Apuntando al esquema ADMINPROYECTO)
-
+-- 1. Lectura sobre las 8 Tablas Base de Negocio
 GRANT SELECT ON ADMINPROYECTO.Region TO usr_lectura;
 GRANT SELECT ON ADMINPROYECTO.Pais TO usr_lectura;
 GRANT SELECT ON ADMINPROYECTO.Localizacion TO usr_lectura;
@@ -33,18 +33,19 @@ GRANT SELECT ON ADMINPROYECTO.Historial_Puesto TO usr_lectura;
 GRANT SELECT ON ADMINPROYECTO.Proyecto TO usr_lectura;
 GRANT SELECT ON ADMINPROYECTO.Asignacion TO usr_lectura;
 
--- Permiso para que usr_lectura pueda ver las VISTAS del proyecto
-GRANT SELECT ON ADMINPROYECTO.vw_resumen_proyectos TO usr_lectura;
-GRANT SELECT ON ADMINPROYECTO.vw_detalle_empleados TO usr_lectura;
+-- 2. Lectura sobre las NUEVAS VISTAS REALES de la Sección E (CORREGIDO)
+GRANT SELECT ON ADMINPROYECTO.vista_empleados_operativa TO usr_lectura;
+GRANT SELECT ON ADMINPROYECTO.vista_reporting_departamentos TO usr_lectura;
 
 
--- usr_admin: EXECUTE de lógica y DML sobre auditoría/logs
+-- ASIGNACIÓN DE PRIVILEGIOS A: usr_admin
 
-GRANT EXECUTE ON ADMINPROYECTO.sp_resumen_periodo TO usr_admin;
-GRANT EXECUTE ON ADMINPROYECTO.sp_top_elementos TO usr_admin;
-GRANT EXECUTE ON ADMINPROYECTO.sp_indicadores_categoria TO usr_admin;
-GRANT EXECUTE ON ADMINPROYECTO.sp_alertas_negocio TO usr_admin;
+-- 1. Ejecución sobre los 4 Procedimientos Almacenados (P1, P2, P3, P4)
+GRANT EXECUTE ON ADMINPROYECTO.SP_RESUMEN_PERIODO TO usr_admin;
+GRANT EXECUTE ON ADMINPROYECTO.SP_TOP_ELEMENTOS TO usr_admin;
+GRANT EXECUTE ON ADMINPROYECTO.SP_INDICADORES_CATEGORIA TO usr_admin;
+GRANT EXECUTE ON ADMINPROYECTO.SP_ALERTAS_NEGOCIO TO usr_admin;
 
--- Permisos DML sobre las tablas 
+-- 2. Permisos DML totales sobre las tablas de soporte (logs e infraestructura)
 GRANT SELECT, INSERT, UPDATE, DELETE ON ADMINPROYECTO.AUDITORIA_EMPLEADOS TO usr_admin;
 GRANT SELECT, INSERT, UPDATE, DELETE ON ADMINPROYECTO.LOG_ERRORES TO usr_admin;

@@ -1,13 +1,17 @@
--- Tabla para registrar excepciones (Requisito Obligatorio EXCEPTION)
+-- 1. LIMPIEZA PREVENTIVA (Evitar error si se corre más de una vez)
+DROP PROCEDURE sp_registrar_log;
+DROP TABLE AUDITORIA_EMPLEADOS CASCADE CONSTRAINTS;
+DROP TABLE LOG_ERRORES CASCADE CONSTRAINTS;
+
+-- 2. CREACIÓN DE TABLAS (Sin prefijos, directo en la cuenta adminProyecto)
 CREATE TABLE LOG_ERRORES (
     id_log NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     usuario VARCHAR2(50) DEFAULT USER,
     fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     codigo_error NUMBER,
     mensaje_error VARCHAR2(4000)
-);
+) TABLESPACE USERS;
 
--- Tabla para el Trigger T1 (Auditoría sobre la tabla Empleado)
 CREATE TABLE AUDITORIA_EMPLEADOS (
     id_auditoria NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     usuario VARCHAR2(50) DEFAULT USER,
@@ -18,9 +22,9 @@ CREATE TABLE AUDITORIA_EMPLEADOS (
     salario_nuevo NUMBER(8,2),
     puesto_anterior VARCHAR2(10),
     puesto_nuevo VARCHAR2(10)
-);
+) TABLESPACE USERS;
 
--- Mini-procedimiento autónomo para registrar los logs (Garantiza que se guarden aunque el proceso principal haga ROLLBACK)
+-- 3. PROCEDIMIENTO AUTÓNOMO
 CREATE OR REPLACE PROCEDURE sp_registrar_log (
     p_codigo IN NUMBER,
     p_mensaje IN VARCHAR2

@@ -1,5 +1,5 @@
 -- 1. Forzar entrada a la PDB del proyecto
-ALTER SESSION SET CONTAINER = FREEPDB1;
+ALTER SESSION SET CONTAINER = PDB_UES;
 
 -- 2. Limpieza por si ya habían hecho intentos erróneos
 DROP USER adminProyecto CASCADE;
